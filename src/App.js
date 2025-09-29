@@ -7,6 +7,7 @@ function App() {
   useEffect(() => {
     getBooks().then((b) => setBooks(b));
   }, []);
+  console.log("books", books);
   return (
     <div className="App">
       <h1>Authentication Exercise</h1>
