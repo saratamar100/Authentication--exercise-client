@@ -1,7 +1,13 @@
 import axios from "axios";
 
+const apiClient = axios.create({
+  baseURL: "http://localhost:5000/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 const httpGet = (url) => {
-  return axios
+  return apiClient
     .get(url)
     .then((response) => response.data)
     .catch((err) => {
@@ -10,8 +16,8 @@ const httpGet = (url) => {
 };
 
 const httpPost = (url, body) => {
-  return axios
-    .post(url, body)    
+  return apiClient
+    .post(url, body)
     .then((response) => response.data)
     .catch((err) => {
       throw err;
