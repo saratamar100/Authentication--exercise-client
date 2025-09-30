@@ -7,8 +7,11 @@ const apiClient = axios.create({
   },
 });
 const httpGet = (url) => {
+  const token = localStorage.getItem("token");
   return apiClient
-    .get(url)
+    .get(url, {
+      headers: { Authorization: token ? `Bearer ${token}` : "" },
+    })
     .then((response) => response.data)
     .catch((err) => {
       throw err;
@@ -16,8 +19,11 @@ const httpGet = (url) => {
 };
 
 const httpPost = (url, body) => {
+  const token = localStorage.getItem("token");
   return apiClient
-    .post(url, body)
+    .post(url, body, {
+      headers: { Authorization: token ? `Bearer ${token}` : "" },
+    })
     .then((response) => response.data)
     .catch((err) => {
       throw err;
