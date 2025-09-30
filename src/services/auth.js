@@ -17,3 +17,6 @@ export async function logout() {
     });
   }
 }
+export async function register(username, password) {
+  return httpPost("/register", { username, password });
+}

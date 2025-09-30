@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { getBooks } from "./services/books";
-import { login, logout } from "./services/auth";
+import { login, logout, register } from "./services/auth";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -9,15 +9,27 @@ function App() {
     getBooks().then((b) => setBooks(b));
   }, []);
   console.log("books", books);
-  const handleLogin = async () => {login("sara", "p1")};
-  const handleLogout = async () => {logout()};
+  const handleLogin = async () => {
+    login("sara", "p1");
+  };
+  const handleLogout = async () => {
+    logout();
+  };
+  const handleRegister = async () => {
+    register("noa", "p2");
+  };
   return (
     <div className="App">
       <h1>Authentication Exercise</h1>
       <div>{JSON.stringify(books)}</div>
 
-      <button onClick={handleLogin}>Login with username "sara" and password "p1"</button>
+      <button onClick={handleLogin}>
+        Login with username "sara" and password "p1"
+      </button>
       <button onClick={handleLogout}>Logout</button>
+      <button onClick={handleRegister}>
+        Register with username "noa" and password "p2"
+      </button>
     </div>
   );
 }
